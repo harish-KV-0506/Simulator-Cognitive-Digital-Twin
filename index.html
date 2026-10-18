@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cognitive Digital Twin | Intelligent business decision optimization</title>
+<meta name="description" content="An interactive Cognitive Digital Twin for MSME business decisions: machine learning forecasting, knowledge-graph reasoning, Monte Carlo what-if simulation and reinforcement-learning recommendations, running entirely in your browser.">
+<meta property="og:title" content="Cognitive Digital Twin for Business Decision Intelligence">
+<meta property="og:description" content="A virtual twin of your business that learns, simulates and recommends.">
+<meta name="theme-color" content="#050816">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070b1c'/%3E%3Ccircle cx='24' cy='32' r='11' fill='none' stroke='%234FE3F0' stroke-width='4'/%3E%3Ccircle cx='40' cy='32' r='11' fill='none' stroke='%238B7CFF' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<div id="boot" role="status" aria-live="polite">
+  <div class="boot-card">
+    <div class="twin-mark"><i></i><i></i></div>
+    <h2>Building your digital twin</h2>
+    <ul id="bootSteps"></ul>
+    <div class="bar"><i id="bootBar"></i></div>
+  </div>
+</div>
+
+<header class="top" id="top">
+  <a class="brand" href="#/" aria-label="Cognitive Digital Twin home"><span class="twin-mark sm"><i></i><i></i></span><span>Cognitive<b>Twin</b></span></a>
+  <nav class="top-nav" id="topNav" aria-label="Primary">
+    <a href="#/concept">Concept</a><a href="#/architecture">Architecture</a><a href="#/results">Results</a><a href="#/research">Research</a>
+    <a href="#/app/dashboard" class="launch">Launch the twin</a>
+  </nav>
+  <button class="menu" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<!-- ================= LANDING ================= -->
+<main id="landing">
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="dot live"></span>Cognitive Digital Twin &middot; Business Decision Intelligence</p>
+        <h1 class="reveal">A virtual twin of your business that <em>learns</em>, <em>simulates</em> and <em>recommends</em>.</h1>
+        <p class="lede reveal">An intelligent decision platform for MSMEs. It combines machine learning, reinforcement learning, knowledge graphs and simulation analytics so you can test a decision on the twin before you risk it in the real business.</p>
+        <div class="btns reveal"><a class="btn primary" href="#/app/dashboard">Launch the live twin</a><a class="btn ghost" href="#/concept">Explore the concept</a></div>
+        <div class="chips reveal" id="heroChips"><span class="chip"><i class="dot"></i>Building twin...</span></div>
+      </div>
+      <div class="hero-card reveal" aria-hidden="true">
+        <div class="hc-head"><span>Twin sync</span><b id="hcState">live</b></div>
+        <div class="hc-row"><div><small>Physical business</small><strong>Real-time data</strong></div><div class="pipe"><i></i><i></i><i></i></div><div class="r"><small>Digital twin</small><strong>Cognitive model</strong></div></div>
+        <canvas id="heroSpark" height="92"></canvas>
+        <div class="hc-foot"><span>Predict</span><span>Simulate</span><span>Optimise</span></div>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#/concept" aria-label="Scroll to concept"><i></i></a>
+  </section>
+
+  <section class="sec" id="concept">
+    <div class="wrap">
+      <p class="eyebrow reveal">The concept</p>
+      <h2 class="reveal">From passive monitoring to an intelligent twin.</h2>
+      <p class="lede reveal">Traditional digital twins describe what is happening. A <b>Cognitive</b> Digital Twin adds intelligence: it can perceive, reason, learn and optimise business operations dynamically.</p>
+      <div class="cards4">
+        <article class="card reveal"><span class="num">01</span><h3>Perceive</h3><p>Continuously integrates sales, inventory, workforce, customer and supplier data into a living virtual model of the business.</p></article>
+        <article class="card reveal"><span class="num">02</span><h3>Reason</h3><p>Machine learning predicts demand while a knowledge graph captures how customers, products, suppliers and staff depend on each other.</p></article>
+        <article class="card reveal"><span class="num">03</span><h3>Simulate</h3><p>Monte Carlo "what-if" analysis tests pricing, workforce, inventory and market shocks on the twin before anything changes for real.</p></article>
+        <article class="card reveal"><span class="num">04</span><h3>Optimise</h3><p>A reinforcement-learning agent learns the pricing and ordering policy that maximises profit, controls cost and keeps customers satisfied.</p></article>
+      </div>
+      <div class="cmp reveal">
+        <h3>Why a cognitive twin?</h3>
+        <table><thead><tr><th>Existing method</th><th>Limitation</th></tr></thead><tbody>
+          <tr><td>Traditional digital twin</td><td>No intelligent reasoning</td></tr>
+          <tr><td>Business intelligence dashboards</td><td>Static, historical analysis</td></tr>
+          <tr><td>Machine-learning prediction systems</td><td>No simulation capability</td></tr>
+          <tr><td>Reinforcement-learning models</td><td>Limited business context integration</td></tr>
+          <tr class="us"><td>Proposed Cognitive Digital Twin</td><td>Integrated prediction, reasoning and optimisation</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="architecture">
+    <div class="wrap">
+      <p class="eyebrow reveal">Architecture</p>
+      <h2 class="reveal">Five layers, one continuous loop.</h2>
+      <p class="lede reveal">Select a layer to see what it does and how it is implemented in the research system and in this web edition.</p>
+      <div class="arch reveal" id="arch"></div>
+      <div class="arch-detail reveal" id="archDetail"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="modules">
+    <div class="wrap">
+      <p class="eyebrow reveal">The application</p>
+      <h2 class="reveal">Everything runs live, in your browser.</h2>
+      <div class="cards3">
+        <a class="card link reveal" href="#/app/data"><span class="ico">&#9638;</span><h3>Data integration</h3><p>Use the sample MSME dataset or upload your own CSV. Cleaning, outlier handling and twin calibration happen instantly.</p><span class="go">Open &rarr;</span></a>
+        <a class="card link reveal" href="#/app/twin"><span class="ico">&#9678;</span><h3>Live digital twin</h3><p>Watch the virtual business sync in real time, inject disruptions and see anomaly alerts fire.</p><span class="go">Open &rarr;</span></a>
+        <a class="card link reveal" href="#/app/cognitive"><span class="ico">&#10023;</span><h3>Cognitive analysis</h3><p>Random-forest and seasonal-regression forecasting, plus a knowledge graph with impact reasoning.</p><span class="go">Open &rarr;</span></a>
+        <a class="card link reveal" href="#/app/simulate"><span class="ico">&#8776;</span><h3>What-if simulation</h3><p>1,000-run Monte Carlo scenarios for demand, price, supply and workforce, with full risk distributions.</p><span class="go">Open &rarr;</span></a>
+        <a class="card link reveal" href="#/app/decide"><span class="ico">&#9881;</span><h3>Decision recommendation</h3><p>Train a Q-learning agent live and see exactly why it recommends a price and an order quantity.</p><span class="go">Open &rarr;</span></a>
+        <a class="card link reveal" href="#/app/reports"><span class="ico">&#9636;</span><h3>Reports</h3><p>Auto-generated executive summary with JSON and CSV export and print-ready output.</p><span class="go">Open &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="results">
+    <div class="wrap">
+      <p class="eyebrow reveal">Reported results</p>
+      <h2 class="reveal">What the research found.</h2>
+      <p class="lede reveal">Performance reported in the research paper, comparing a traditional system with the proposed Cognitive Digital Twin, evaluated on simulated MSME business datasets.</p>
+      <div class="res reveal" id="resBars"></div>
+      <div class="res-rows reveal">
+        <div><small>Decision-making time</small><strong>4.2 hours <span>&rarr;</span> 35 minutes</strong></div>
+        <div><small>Customer satisfaction</small><strong>Moderate <span>&rarr;</span> High</strong></div>
+      </div>
+      <p class="note reveal">Figures are taken from the paper. The numbers you see inside the application are computed live from the loaded dataset and will differ.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="research">
+    <div class="wrap two">
+      <div>
+        <p class="eyebrow reveal">Research</p>
+        <h2 class="reveal">Method and models.</h2>
+        <p class="lede reveal">The framework predicts with machine learning, reasons over a knowledge graph, evaluates risk with Monte Carlo simulation and optimises decisions with reinforcement learning.</p>
+        <div class="eq reveal"><small>Prediction</small><code>Y = f(X<sub>1</sub>, X<sub>2</sub>, &hellip;, X<sub>n</sub>)</code></div>
+        <div class="eq reveal"><small>Mean squared error</small><code>MSE = (1/n) &Sigma; (Y<sub>i</sub> &minus; &Yhat;<sub>i</sub>)<sup>2</sup></code></div>
+        <div class="eq reveal"><small>Reinforcement-learning reward</small><code>Reward = &alpha;(Profit) &minus; &beta;(Cost) + &gamma;(Customer Satisfaction)</code></div>
+      </div>
+      <div>
+        <div class="stack reveal"><h3>Research implementation</h3><p>Python 3.11 &middot; TensorFlow (LSTM) &middot; Scikit-learn (Random Forest) &middot; Neo4j knowledge graph &middot; Flask &middot; MongoDB &middot; Power BI</p></div>
+        <div class="stack reveal"><h3>This web edition</h3><p>A fully client-side implementation of the same framework in JavaScript: in-browser Random Forest and seasonal regression, an interactive knowledge graph, Monte Carlo simulation and tabular Q-learning. Static files, so it deploys straight to GitHub Pages.</p></div>
+        <div class="stack reveal"><h3>Future scope</h3><p>Generative AI &middot; IoT-enabled monitoring &middot; Explainable AI &middot; Cloud deployment &middot; Blockchain integration &middot; Multi-agent cognitive simulation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="team">
+    <div class="wrap">
+      <p class="eyebrow reveal">Project</p>
+      <h2 class="reveal">Cognitive Digital Twin for BI with ML and RL.</h2>
+      <div class="people reveal">
+        <div><span class="av">HK</span><h3>Harish K V</h3><p>B.Tech, Computer Science and Business Systems</p></div>
+        <div><span class="av">HR</span><h3>Harish R</h3><p>B.Tech, Computer Science and Business Systems</p></div>
+        <div><span class="av g">SD</span><h3>Dr. J. Sasidevi, M.E., Ph.D.</h3><p>Project guide</p></div>
+      </div>
+      <p class="note reveal">K. Ramakrishnan College of Engineering (Autonomous), Anna University, Chennai.</p>
+      <details class="refs reveal"><summary>References</summary><ol>
+        <li>Tao, F., Qi, Q., Liu, A., Kusiak, A. &ldquo;Data-driven smart manufacturing.&rdquo; Journal of Manufacturing Systems, 48, 157&ndash;169, 2018.</li>
+        <li>Grieves, M. &ldquo;Digital Twin: Manufacturing Excellence through Virtual Factory Replication.&rdquo; White Paper, 2014.</li>
+        <li>Sutton, R. S., Barto, A. G. &ldquo;Reinforcement Learning: An Introduction.&rdquo; MIT Press, 2018.</li>
+        <li>Goodfellow, I., Bengio, Y., Courville, A. &ldquo;Deep Learning.&rdquo; MIT Press, 2016.</li>
+        <li>Hogan, A., et al. &ldquo;Knowledge Graphs.&rdquo; ACM Computing Surveys, 54(4), 2021.</li>
+        <li>Lu, J., Yang, Z., Zheng, X., Wang, J., Kiritsis, D. &ldquo;Exploring the Concept of Cognitive Digital Twin.&rdquo; 2022.</li>
+        <li>Meierhofer, J. &ldquo;Digital Twin-Enabled Decision Support Services in Industrial Service Ecosystems.&rdquo; 2021.</li>
+        <li>Lee, Y., Baek, M.-S., Yoon, K. &ldquo;Digital Entity Management Methodology for Digital Twin Implementation.&rdquo; 2025.</li>
+      </ol></details>
+    </div>
+  </section>
+  <footer class="foot"><div class="wrap"><span>Cognitive Digital Twin &middot; Business decision intelligence</span><a href="#/app/dashboard">Launch the twin &rarr;</a></div></footer>
+</main>
+
+<!-- ================= APP ================= -->
+<div id="app" hidden>
+  <aside class="side" id="side" aria-label="Application modules"></aside>
+  <section class="appmain"><div class="appbar" id="appBar"></div><div class="view" id="view"></div></section>
+</div>
+
+<script src="js/engine.js"></script>
+<script src="js/bg.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+<script src="js/views.js"></script>
+<script src="js/views2.js"></script>
+<script src="js/landing.js"></script>
+</body>
+</html>
